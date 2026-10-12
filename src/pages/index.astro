@@ -1,0 +1,426 @@
+---
+import { Image, getImage } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+
+import logo from '../assets/images/logo_servifuster.png';
+import logoPie from '../assets/images/logo_footer.png';
+import auditorio from '../assets/images/navarra-auditorio.jpg';
+import aula from '../assets/images/navarra-aula.jpg';
+import gradas from '../assets/images/navarra-auditorio-gradas.jpg';
+import escenario from '../assets/images/navarra-escenario.jpg';
+import cafeteria from '../assets/images/navarra-cafeteria.jpg';
+import cabinas from '../assets/images/construccion-cabinas-rojas.jpg';
+import mostrador from '../assets/images/construccion-mostrador-circular.jpg';
+import taquillas from '../assets/images/construccion-taquillas.jpg';
+import barandilla from '../assets/images/construccion-barandilla.jpg';
+import habitacion from '../assets/images/decoracion-habitacion.jpg';
+import despacho from '../assets/images/decoracion-despacho.jpg';
+import estanterias from '../assets/images/decoracion-estanterias.jpg';
+import mesaRoja from '../assets/images/decoracion-mesa-roja.jpg';
+import fachada from '../assets/images/exterior-fachada-lamas.jpg';
+import edificio from '../assets/images/exterior-edificio.jpg';
+import puertasArco from '../assets/images/ebanisteria-puertas-arco.jpg';
+import puerta from '../assets/images/ebanisteria-puerta.jpg';
+import vestibulo from '../assets/images/ebanisteria-vestibulo.jpg';
+import estructura from '../assets/images/ebanisteria-estructura.jpg';
+
+const telefono = '934 74 11 12';
+const telefonoHref = 'tel:+34934741112';
+const email = 'servifuster@servifuster.es';
+const presupuestoHref = `mailto:${email}?subject=${encodeURIComponent('Petición de presupuesto')}`;
+const mapa = 'https://maps.google.com/?cid=2416767311219541318';
+
+const og = await getImage({ src: auditorio, width: 1200, format: 'jpg' });
+
+const oficios = [
+  {
+    id: 'construccion',
+    nombre: 'Construcción',
+    texto: 'Revestimientos, puertas, mostradores y taquillas para obra, de aulas a auditorios. Agilidad de trabajo y acabados de máxima calidad.',
+    foto: aula,
+    alt: 'Aula con las paredes revestidas de madera y pizarras verdes',
+  },
+  {
+    id: 'exterior',
+    nombre: 'Exterior',
+    texto: 'Todo tipo de ventanas y fachadas, tanto con fijación vista como oculta.',
+    foto: fachada,
+    alt: 'Fachada de un edificio con lamas de madera',
+  },
+  {
+    id: 'decoracion',
+    nombre: 'Decoración',
+    texto: 'Interiores en madera: habitaciones, despachos, recepciones y estanterías.',
+    foto: habitacion,
+    alt: 'Habitación con cabecero y armarios de madera',
+  },
+  {
+    id: 'ebanisteria',
+    nombre: 'Ebanistería',
+    texto: 'Lo imposible aquí lo hacemos realidad, gracias al saber hacer de nuestros profesionales.',
+    foto: vestibulo,
+    alt: 'Vestíbulo modernista con tres puertas de madera en arco',
+  },
+];
+
+const grupos = [
+  {
+    id: 'proyectos-construccion',
+    nombre: 'Construcción',
+    nota: 'Vestuarios, recepciones, taquillas y barandillas',
+    fotos: [
+      { src: cabinas, alt: 'Cabinas lacadas en rojo en un pasillo', clase: 'e-alto' },
+      { src: mostrador, alt: 'Mostrador circular lacado en negro', clase: 'e-grande m-ancho' },
+      { src: taquillas, alt: 'Pasillo con taquillas azules, rojas y amarillas', clase: '' },
+      { src: barandilla, alt: 'Barandilla revestida en rojo con pasamanos metálico', clase: 'm-ancho' },
+    ],
+  },
+  {
+    id: 'proyectos-decoracion',
+    nombre: 'Decoración',
+    nota: 'Despachos, habitaciones y estanterías',
+    fotos: [
+      { src: despacho, alt: 'Despacho con paredes y suelo de madera clara', clase: 'e-alto' },
+      { src: estanterias, alt: 'Oficina con estanterías de madera hasta el techo', clase: 'e-grande m-ancho' },
+      { src: habitacion, alt: 'Habitación con cabecero y armarios de madera', clase: '' },
+      { src: mesaRoja, alt: 'Despacho revestido de madera con mesa roja', clase: 'm-ancho' },
+    ],
+  },
+];
+
+const gruposPar = [
+  {
+    id: 'proyectos-exterior',
+    nombre: 'Exterior',
+    nota: 'Fachadas',
+    fotos: [
+      { src: fachada, alt: 'Fachada con lamas de madera vista desde la calle', clase: 'e-alto' },
+      { src: edificio, alt: 'Bloque de viviendas con fachada de madera', clase: 'e-alto' },
+    ],
+  },
+  {
+    id: 'proyectos-ebanisteria',
+    nombre: 'Ebanistería',
+    nota: 'Puertas y piezas singulares',
+    fotos: [
+      { src: puerta, alt: 'Puerta de madera con vidrio grabado y forja', clase: 'e-alto' },
+      { src: vestibulo, alt: 'Vestíbulo modernista con escalera y tres puertas de madera en arco', clase: 'm-ancho' },
+      { src: estructura, alt: 'Estructura escultórica de madera en el taller', clase: '' },
+    ],
+  },
+];
+
+const resenas = [
+  { texto: 'Buena empresa, muy profesionales', autor: 'Xavier Vall' },
+  { texto: 'Taller de carpintería y montaje especializado', autor: 'Andrés Rodríguez' },
+  { texto: 'Buenos carpinteros', autor: 'Ttes Reina Express sl' },
+];
+
+const navegacion = [
+  { href: '#empresa', texto: 'Empresa' },
+  { href: '#servicios', texto: 'Servicios' },
+  { href: '#proyectos', texto: 'Proyectos' },
+  { href: '#contactar', texto: 'Contactar' },
+];
+---
+
+<Layout
+  title="Carpintería y ebanistería en Cornellà de Llobregat | Servifuster"
+  description="Servifuster, carpintería y ebanistería en Cornellà de Llobregat: construcción, exterior, decoración y ebanistería. Llama al 934 74 11 12 o pide presupuesto."
+  image={og.src}
+>
+  <header class="cabecera">
+    <div class="contenedor cabecera__fila">
+      <a class="cabecera__logo" href="#contenido" aria-label="Servifuster, carpintería y ebanistería. Inicio">
+        <Image src={logo} alt="" width={261} height={146} loading="eager" />
+      </a>
+      <nav class="navegacion navegacion--escritorio" aria-label="Principal">
+        <ul>
+          {navegacion.map((n) => <li><a href={n.href}>{n.texto}</a></li>)}
+        </ul>
+      </nav>
+      <a class="boton boton--principal cabecera__telefono" href={telefonoHref}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"></path></svg>
+        <span>{telefono}</span>
+      </a>
+    </div>
+    <nav class="navegacion navegacion--movil" aria-label="Principal en móvil">
+      <div class="contenedor">
+        <ul>
+          {navegacion.map((n) => <li><a href={n.href}>{n.texto}</a></li>)}
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="portada" aria-labelledby="titulo-portada">
+      <div class="portada__foto">
+        <Image
+          src={auditorio}
+          alt="Auditorio revestido de madera con luz cálida y butacas, de la Universidad de Navarra"
+          widths={[640, 960, 1440, 2200]}
+          sizes="100vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      <div class="contenedor portada__texto">
+        <div>
+          <h1 id="titulo-portada">
+            <span class="linea"><span>Carpintería y</span></span>
+            <span class="linea"><span>ebanistería</span></span>
+            <span class="linea"><span>en Cornellà</span></span>
+          </h1>
+          <p class="portada__lema">«Los grandes proyectos solo son grandes si se cuidan los detalles».</p>
+          <div class="portada__acciones">
+            <a class="boton boton--claro" href={telefonoHref}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"></path></svg>
+              Llamar al {telefono}
+            </a>
+            <a class="boton boton--contorno" href={presupuestoHref}>Pedir presupuesto</a>
+          </div>
+        </div>
+        <p class="portada__pie">En la foto, auditorio de la Universidad de Navarra.</p>
+      </div>
+    </section>
+
+    <div class="contenedor">
+      <ul class="datos" aria-label="Datos del taller">
+        <li>
+          <strong>4,7 en Google</strong>
+          <span>18 reseñas. <a class="enlace-tactil" href={mapa}>Ver la ficha</a></span>
+        </li>
+        <li>
+          <strong>Lunes a viernes, de 8 a 18 h</strong>
+          <span>Sábados y domingos, cerrado</span>
+        </li>
+        <li>
+          <strong>Carrer de l'Energia, 24</strong>
+          <span>08940 Cornellà de Llobregat. <a class="enlace-tactil" href={mapa}>Cómo llegar</a></span>
+        </li>
+      </ul>
+    </div>
+
+    <section class="seccion" id="servicios" aria-labelledby="titulo-servicios">
+      <div class="contenedor">
+        <h2 class="seccion__titulo" id="titulo-servicios">Servicios</h2>
+        <p class="seccion__entrada">
+          Cuatro oficios con el mismo sello: agilidad de trabajo y acabados de máxima calidad.
+        </p>
+        <ul class="oficios">
+          {
+            oficios.map((o) => (
+              <li class="oficio">
+                <a href={`#proyectos-${o.id}`}>
+                  <h3>{o.nombre}</h3>
+                  <div class="oficio__texto">
+                    <p>{o.texto}</p>
+                    <span class="oficio__ver">Ver proyectos de {o.nombre.toLowerCase()}</span>
+                  </div>
+                  <div class="oficio__foto">
+                    <Image src={o.foto} alt={o.alt} widths={[200, 440]} sizes="(min-width: 900px) 220px, 96px" loading="lazy" />
+                  </div>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="seccion navarra" id="proyectos" aria-labelledby="titulo-navarra">
+      <div class="contenedor">
+        <div class="navarra__cabeza">
+          <h2 class="seccion__titulo" id="titulo-navarra">Universidad de Navarra</h2>
+          <p class="seccion__entrada">
+            Aulas, auditorios, salas y cafetería revestidos de madera.
+          </p>
+        </div>
+        <div class="mosaico">
+          <figure class="mosaico__grande">
+            <Image src={gradas} alt="Auditorio con gradas de butacas y techo iluminado" widths={[640, 1000, 1600]} sizes="(min-width: 900px) 66vw, 100vw" loading="lazy" />
+            <figcaption>Auditorio</figcaption>
+          </figure>
+          <figure class="mosaico__peque">
+            <Image src={aula} alt="Aula con bancos y paredes de madera" widths={[400, 800]} sizes="(min-width: 900px) 33vw, 50vw" loading="lazy" />
+            <figcaption>Aula</figcaption>
+          </figure>
+          <figure class="mosaico__peque">
+            <Image src={escenario} alt="Sala con tarima y paredes revestidas de madera" widths={[400, 800]} sizes="(min-width: 900px) 33vw, 50vw" loading="lazy" />
+            <figcaption>Sala</figcaption>
+          </figure>
+          <figure class="mosaico__peque">
+            <Image src={cafeteria} alt="Cafetería con barra iluminada y revestimientos de madera" widths={[400, 800, 1000]} sizes="(min-width: 900px) 33vw, 100vw" loading="lazy" />
+            <figcaption>Cafetería</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" aria-labelledby="titulo-mas-proyectos">
+      <div class="contenedor">
+        <h2 class="seccion__titulo" id="titulo-mas-proyectos">Más proyectos</h2>
+        <p class="seccion__entrada">Una selección, ordenada por oficio.</p>
+        <div class="paramentos">
+          {
+            grupos.map((g) => (
+              <div class="paramento-grupo" id={g.id}>
+                <div class="paramento-grupo__cabeza">
+                  <h3>{g.nombre}</h3>
+                  <p>{g.nota}</p>
+                </div>
+                <ul class="paramento">
+                  {g.fotos.map((f) => (
+                    <li class={f.clase}>
+                      <Image src={f.src} alt={f.alt} widths={[400, 800, 1200]} sizes="(min-width: 900px) 50vw, 100vw" loading="lazy" />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+          <div class="paramento-par">
+            {
+              gruposPar.map((g) => (
+                <div class="paramento-grupo" id={g.id}>
+                  <div class="paramento-grupo__cabeza">
+                    <h3>{g.nombre}</h3>
+                    <p>{g.nota}</p>
+                  </div>
+                  <ul class="paramento paramento--medio">
+                    {g.fotos.map((f) => (
+                      <li class={f.clase}>
+                        <Image src={f.src} alt={f.alt} widths={[400, 800]} sizes="(min-width: 900px) 25vw, 50vw" loading="lazy" />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion--pegada" id="empresa" aria-labelledby="titulo-empresa">
+      <div class="contenedor empresa">
+        <figure class="empresa__arco">
+          <div>
+            <Image src={puertasArco} alt="Tres puertas de madera en arco de medio punto con vidrieras grabadas" widths={[480, 960]} sizes="(min-width: 900px) 520px, 100vw" loading="lazy" />
+          </div>
+          <figcaption>Ebanistería: puertas en arco de medio punto con vidrio grabado.</figcaption>
+        </figure>
+        <div class="empresa__texto">
+          <h2 class="seccion__titulo" id="titulo-empresa">Calidad de principio a fin</h2>
+          <p class="empresa__entrada">
+            Los grandes proyectos solo son grandes si se cuidan los detalles. En Servifuster lo sabemos. Por eso
+            ofrecemos calidad de principio a fin, en nuestro trabajo y en nuestros servicios de seguimiento posventa.
+          </p>
+          <p class="empresa__entrada">
+            Calidad también en rapidez: respuestas inmediatas y eficaces. Y buen gusto, porque la estética no está
+            reñida con la funcionalidad.
+          </p>
+          <dl class="empresa__dl">
+            <div>
+              <dt>Experiencia</dt>
+              <dd>
+                Más de dos décadas de experiencia y una treintena de profesionales para realizar todo tipo de
+                proyectos, de la mano de Conrado Gómez.
+              </dd>
+            </div>
+            <div>
+              <dt>Certificaciones</dt>
+              <dd>
+                Acreditada en estándares de responsabilidad forestal: materiales de bosques sostenibles, con una
+                trazabilidad segura.
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion--pegada" aria-labelledby="titulo-resenas">
+      <div class="contenedor">
+        <div class="resenas">
+          <div>
+            <h2 class="sr-only" id="titulo-resenas">Opiniones en Google</h2>
+            <p class="resenas__nota">4,7</p>
+            <p class="resenas__nota-texto">
+              Nota media en Google con 18 reseñas.
+              <a class="enlace-tactil" href={mapa}>Leerlas en Google Maps</a>
+            </p>
+          </div>
+          <ul>
+            {
+              resenas.map((r) => (
+                <li>
+                  <blockquote>
+                    <p>«{r.texto}»</p>
+                  </blockquote>
+                  <cite>{r.autor}, en Google</cite>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion contacto" id="contactar" aria-labelledby="titulo-contacto">
+      <div class="contenedor">
+        <h2 class="seccion__titulo" id="titulo-contacto">Pide presupuesto</h2>
+        <a class="contacto__telefono" href={telefonoHref} aria-label={`Llamar al ${telefono}`}>{telefono}</a>
+        <div class="contacto__acciones">
+          <a class="boton boton--claro" href={presupuestoHref}>Pedir presupuesto</a>
+        </div>
+        <dl class="contacto__datos">
+          <div>
+            <dt>Taller</dt>
+            <dd>Carrer de l'Energia, 24<br />08940 Cornellà de Llobregat</dd>
+          </div>
+          <div>
+            <dt>Horario</dt>
+            <dd>Lunes a viernes, de 8 a 18 h</dd>
+          </div>
+          <div>
+            <dt>Email</dt>
+            <dd><a class="enlace-tactil" href={presupuestoHref}>{email}</a></dd>
+          </div>
+          <div>
+            <dt>Cómo llegar</dt>
+            <dd><a class="enlace-tactil" href={mapa}>Abrir en Google Maps</a></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__fila">
+        <Image src={logoPie} alt="Servifuster" width={140} height={115} loading="lazy" />
+        <div>
+          <p><strong>Servifuster, S.A.</strong></p>
+          <p>Carrer de l'Energia, 24. 08940 Cornellà de Llobregat (Barcelona)</p>
+          <p>Tel. <a href={telefonoHref}>{telefono}</a>. Fax 93 474 13 62. <a href={`mailto:${email}`}>{email}</a></p>
+        </div>
+        <ul aria-label="Textos legales">
+          <li><a href="https://servifuster.com/aviso-legal/">Aviso legal</a></li>
+          <li><a href="https://servifuster.com/politica-de-privacidad/">Privacidad</a></li>
+          <li><a href="https://servifuster.com/politica-de-cookies-ue/">Cookies</a></li>
+        </ul>
+      </div>
+      <p class="pie__nota">
+        Propuesta de diseño preparada por <a href="https://sergiogarciaweb.com">Sergio García</a>. Textos y fotos de
+        servifuster.com y de su ficha de Google.
+      </p>
+    </div>
+  </footer>
+
+  <nav class="barra-movil" aria-label="Contacto rápido">
+    <a class="boton boton--principal" href={telefonoHref}>Llamar</a>
+    <a class="boton boton--claro" href={presupuestoHref}>Pedir presupuesto</a>
+  </nav>
+</Layout>
